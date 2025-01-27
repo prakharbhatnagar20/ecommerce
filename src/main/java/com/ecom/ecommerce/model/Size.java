@@ -1,7 +1,10 @@
 package com.ecom.ecommerce.model;
 
-public class Size {
+import jakarta.persistence.Embeddable;
 
+@Embeddable
+public class Size {
+    
     private String name;
     public String getName() {
         return name;

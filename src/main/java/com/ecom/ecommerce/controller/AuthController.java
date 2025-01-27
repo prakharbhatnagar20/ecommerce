@@ -93,7 +93,9 @@ public class AuthController {
         
         String token = jwtProvider.generateToken(authentication);
 
-        AuthResponse authResponse = new AuthResponse(token, "SignIn Success");
+        AuthResponse authResponse = new AuthResponse();
+        authResponse.setJwt(token);
+        authResponse.setMessage("User Created Successfully");
 
         return new ResponseEntity<AuthResponse>(authResponse, HttpStatus.CREATED);
     }

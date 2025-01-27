@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Set;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Embedded;
@@ -181,9 +182,9 @@ public class Product {
     private String description;
     @Column(name = "price")
     private int price;
-    @Column(name = "discounted_price")
+    @Column(name = "discountedPrice")
     private int discountedPrice;
-    @Column(name="discount_persent")
+    @Column(name="discountPersent")
     private int discountPersent;
     @Column(name = "quantity")
     private int quantity;
@@ -194,7 +195,7 @@ public class Product {
     private String color;
     @Embedded
     @ElementCollection
-    @Column(name = "sizes")
+    @CollectionTable(name = "product_sizes", joinColumns = @JoinColumn(name = "product_id"))
     private Set<Size> sizes=new HashSet<>();
     @Column(name = "image_url")
     private String imageUrl;

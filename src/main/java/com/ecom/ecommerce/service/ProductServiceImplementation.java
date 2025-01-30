@@ -123,7 +123,7 @@ public class ProductServiceImplementation implements ProductService {
 
     @Override
     public Page<Product> getAllProducts(String category, List<String> colors, List<String> sizes, Integer minPrice,
-            Integer maxPrice, Integer page, Integer minDiscount, String sort, String stock, Integer pageNumber,
+            Integer maxPrice, Integer minDiscount, String sort, String stock, Integer pageNumber,
             Integer pageSize) {
         // TODO Auto-generated method stub
         Pageable pageable = PageRequest.of(pageNumber, pageSize);
@@ -147,6 +147,12 @@ public class ProductServiceImplementation implements ProductService {
 
         Page<Product> filteredPage = new PageImpl<>(pageContent, pageable, products.size());
         return filteredPage;
+    }
+
+    @Override
+    public List<Product> findAllProducts() {
+        // TODO Auto-generated method stub
+        return productRepository.findAll();
     }
     
 }

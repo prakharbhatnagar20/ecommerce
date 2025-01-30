@@ -25,7 +25,7 @@ public class CustomerUserServiceImplementation implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         // TODO Auto-generated method stub
         User user = userRepository.findByEmail(username);
-        if(user!=null){
+        if(user==null){
             throw new UsernameNotFoundException("User not found"+username);
         }
         List<GrantedAuthority> authorities = new ArrayList<>();

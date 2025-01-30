@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.Embedded;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,6 +25,7 @@ public class OrderItem {
     @ManyToOne
     private Product product;
     private Size size;
+    @Column(name = "quantity", insertable = false, updatable = false)
     private int quantity;
 
     private Integer price;
@@ -79,11 +80,7 @@ public class OrderItem {
 
     }
 
-    public OrderItem(Product product, Size size, int quantity) {
-        this.product = product;
-        this.size = size;
-        this.quantity = quantity;
-    }
+    
 
     public Long getId() {
         return id;

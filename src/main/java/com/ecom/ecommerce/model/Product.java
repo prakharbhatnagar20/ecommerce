@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Set;
 
 import jakarta.persistence.CascadeType;
-import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Embedded;
@@ -195,7 +194,7 @@ public class Product {
     private String color;
     @Embedded
     @ElementCollection
-    @CollectionTable(name = "product_sizes", joinColumns = @JoinColumn(name = "product_id"))
+    @Column(name = "sizes")
     private Set<Size> sizes=new HashSet<>();
     @Column(name = "image_url")
     private String imageUrl;
@@ -203,7 +202,7 @@ public class Product {
     private List<Rating>ratings=new ArrayList<>();
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL,orphanRemoval = true)
-    private List<Review>reviews=new ArrayList<>();
+    private List<Review> reviews=new ArrayList<>();
     @Column(name = "num_ratings")
     private int numRatings;
 

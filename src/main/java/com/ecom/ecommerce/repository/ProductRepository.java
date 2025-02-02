@@ -11,10 +11,10 @@ import com.ecom.ecommerce.model.Product;
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
     @Query("SELECT p FROM Product p " +
-           "WHERE (:category IS NULL OR p.category.name = :category) "+
+           "WHERE (:category = '' OR p.category.name = :category) "+
            "AND ((:minPrice IS NULL AND :maxPrice IS NULL) OR (p.discountedPrice BETWEEN :minPrice AND :maxPrice)) " +
            "AND (:minDiscount IS NULL OR p.discountPersent >= :minDiscount) " +
-           "AND (:colors IS NULL OR p.color IN :colors) "+
+        //    "AND (:colors = '' OR p.color IN :colors) "+
            "ORDER BY " +
            "CASE WHEN :sort = 'price_low' THEN p.discountedPrice END ASC, " +
            "CASE WHEN :sort = 'price_high' THEN p.discountedPrice END DESC ")

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ecom.ecommerce.exception.ProductException;
 import com.ecom.ecommerce.model.Product;
 import com.ecom.ecommerce.service.ProductService;
 
@@ -32,6 +33,12 @@ public class ProductController {
     public ResponseEntity<List<Product>> findAllProductsHandler() {
         List<Product> products = productService.findAllProducts();
         return new ResponseEntity<>(products, HttpStatus.OK);
+    }
+
+    @GetMapping("products//id/{productId}") 
+    public ResponseEntity<Product> findProductByIdHandler(@RequestParam Long productId) throws ProductException {
+        Product product = productService.findProductById(productId);
+        return new ResponseEntity<>(product, HttpStatus.OK);
     }
 
    
